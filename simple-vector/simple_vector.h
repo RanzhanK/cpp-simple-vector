@@ -239,26 +239,7 @@ public:
             capacity_ = capacity_ * 2;
         }
     }
-    /*
-    Iterator Insert(ConstIterator pos, Type & value) {
-        if (IsEmpty()){
-            PushBack(value);
-            return begin();
-        }
 
-        auto shift{ std::distance(cbegin(), pos) };
-
-        if (size_ == capacity_) {
-             Reserve(capacity_ * 2);
-        }
-
-        auto pos2{const_cast<Iterator>(std::next(cbegin(), shift))};
-        std::copy_backward(pos2, end(), std::next(end()));
-        *pos2 = std::move(value);
-        ++size_;
-        return pos2;
-    }
-    */
     Iterator Insert(ConstIterator pos, const Type& value) {
         assert(pos >= begin() && pos <= end());
         if (pos == end()) {

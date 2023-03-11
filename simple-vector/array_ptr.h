@@ -20,7 +20,7 @@ public:
     }
 
     explicit ArrayPtr(ArrayPtr<Type>&& other) noexcept {
-        raw_ptr_.swap(other.raw_ptr_);
+        std::swap(raw_ptr_, other.raw_ptr_);
         other.raw_ptr_ = nullptr;
     }
 
@@ -35,8 +35,9 @@ public:
 
     ArrayPtr&& operator=(ArrayPtr&& other ) {
         if (raw_ptr_ != other.raw_ptr_) {
-            raw_ptr_.swap(other.raw_ptr_);
+            std::swap(raw_ptr_, other.raw_ptr_);
         }
+        return *this;
     };
 
     [[nodiscard]] Type* Release() noexcept {
@@ -54,11 +55,7 @@ public:
     }
 
     explicit operator bool() const {
-        if (raw_ptr_ != nullptr) {
-            return true;
-        } else {
-            return false;
-        }
+        return raw_ptr_ != nullptr;
     }
 
     Type* Get() const noexcept {
