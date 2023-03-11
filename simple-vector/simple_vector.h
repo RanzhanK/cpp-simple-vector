@@ -112,30 +112,7 @@ public:
             capacity_ = new_capacity;
         }
     }
-/*
-    void Resize(size_t new_size) {
-        if (new_size < size_ && new_size < capacity_) {
-            size_ = new_size;
-        }
 
-        if (new_size > size_ || new_size > capacity_) {
-            SimpleVector<Type> tmp(new_size);
-            std::copy(begin(), end(), tmp.begin());
-            array_ptr_.swap(tmp.array_ptr_);
-            size_ = new_size;
-            capacity_ = new_size;
-        }
-
-        if (new_size > size_ || new_size < capacity_) {
-            SimpleVector<Type> tmp(new_size);
-            std::fill(tmp.begin(), tmp.end(), Type());
-            std::copy(begin(), end(), tmp.begin());
-            array_ptr_.swap(tmp.array_ptr_);
-            size_ = new_size;
-        }
-
-    }
-*/
     void Resize(size_t new_size) {
         if (new_size > size_) {
             if (new_size <= capacity_) {
